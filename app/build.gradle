@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+HashMap<String, String> baseDependencies = rootProject.ext.supportDependencies
+HashMap<String, String> networkDependencies = rootProject.ext.networkDependencies
+HashMap<String, String> diDependencies = rootProject.ext.diDependencies
+HashMap<String, String> testDependencies = rootProject.ext.testDependencies
+HashMap<String, String> application = rootProject.ext.application
+HashMap<String, String> versions = rootProject.ext.versions
+
+apply from: '../static-analysis/lint.gradle'
+apply from: '../static-analysis/checkstyle.gradle'
+
+android {
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
+
+    defaultConfig {
+        applicationId application.appicationId
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode application.versionCode
+        versionName application.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation baseDependencies.values()
+    implementation networkDependencies.values()
+    implementation helpersDependencies.values()
+    implementation diDependencies.values()
+    implementation asyncDependencies.values()
+
+    testImplementation testDependencies.junit
+    androidTestImplementation testDependencies.test_junit
+    androidTestImplementation testDependencies.espresso
+}
+
+check.dependsOn 'checkstyle'

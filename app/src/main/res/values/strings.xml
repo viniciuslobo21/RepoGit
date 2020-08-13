@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">RepositoriesGit</string>
+
+    <string name="illegal_app_state">Invalid App State</string>
+    <string name="network_error">Network error. Verify your internet</string>
+    <string name="services_down_message">Services temporary unavailable.</string>
+    <string name="api_general_error">Unexpected error occurred. Try again later.</string>
+</resources>

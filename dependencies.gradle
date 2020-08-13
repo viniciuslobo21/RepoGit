@@ -1,0 +1,78 @@
+ext {
+    application = [
+            versionCode  : 1,
+            versionName  : "1.0",
+            applicationId: "com.lobo.repogit"
+    ]
+
+    versions = [
+            buildTools: "29.0.1",
+            minSdk    : 21,
+            targetSdk : 29,
+            compileSdk: 29,
+    ]
+
+    gradleVersion = '4.0.0'
+    kotlinVersion = '1.3.70'
+    gradlePlugins = '0.28.0'
+    supportVersion = '1.1.0'
+    kotlinKtx = '1.2.0'
+    constraintLayout = '1.1.3'
+    lifecycle = '2.2.0'
+    junitVersion = '4.12'
+    testJunit = '1.1.1'
+    espresso = '3.2.0'
+    retrofitVersion = "2.6.0"
+    okHttpInterceptorVersion = "4.4.0"
+    gsonVersion = "2.8.6"
+    koinVersion = '2.1.3'
+    hawkVersion = '2.0.1'
+    multiDexVersion = '2.0.1'
+    lottieVersion = '2.8.0'
+    cardViewVersion = '1.0.0'
+    coroutinesVersion = '1.3.4'
+    glideVersion = '4.0.0'
+
+    supportDependencies = [
+            kotlin_std_lib      : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
+            material            : "com.google.android.material:material:$supportVersion",
+            app_compat          : "androidx.appcompat:appcompat:$supportVersion",
+            recycler_view       : "androidx.recyclerview:recyclerview:$supportVersion",
+            kotlin_ktx          : "androidx.core:core-ktx:$kotlinKtx",
+            constraint_layout   : "androidx.constraintlayout:constraintlayout:$constraintLayout",
+            lifecycle_extensions: "androidx.lifecycle:lifecycle-extensions:$lifecycle",
+            lifecycle_viewmodel : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle",
+            lifecylce_ktx       : "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle",
+            multi_dex           : "androidx.multidex:multidex:$multiDexVersion",
+            card_view           : "androidx.cardview:cardview:$cardViewVersion",
+            glide               : "com.github.bumptech.glide:glide:$glideVersion"
+    ]
+
+    testDependencies = [
+            junit     : "junit:junit:$junitVersion",
+            test_junit: "androidx.test.ext:junit:$testJunit",
+            espresso  : "androidx.test.espresso:espresso-core:$espresso"
+    ]
+
+    networkDependencies = [
+            retrofit         : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            okHttpInterceptor: "com.squareup.okhttp3:logging-interceptor:$okHttpInterceptorVersion",
+            gson             : "com.google.code.gson:gson:$gsonVersion",
+            gson_converter   : "com.squareup.retrofit2:converter-gson:2.5.0"
+    ]
+
+    diDependencies = [
+            koin          : "org.koin:koin-android:$koinVersion",
+            koin_viewmodel: "org.koin:koin-android-viewmodel:$koinVersion"
+    ]
+
+    helpersDependencies = [
+            hawk  : "com.orhanobut:hawk:$hawkVersion",
+            lottie: "com.airbnb.android:lottie:$lottieVersion"
+    ]
+
+    asyncDependencies = [
+            coroutines_core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion",
+            coroutines_android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    ]
+}
