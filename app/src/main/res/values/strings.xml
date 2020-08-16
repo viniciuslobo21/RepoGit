@@ -5,4 +5,6 @@
     <string name="network_error">Network error. Verify your internet</string>
     <string name="services_down_message">Services temporary unavailable.</string>
     <string name="api_general_error">Unexpected error occurred. Try again later.</string>
+    <string name="tv_star">Star</string>
+    <string name="tv_top_repositories_of">Top Repositories of</string>
 </resources>

@@ -33,18 +33,18 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
         init()
     }
 
-    fun configureViewModel(viewModel: BaseViewModel) {
-        viewModel.showLoading.addOnPropertyChangedCallback(object :
-            Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable, propertyId: Int) {
-                if (viewModel.isLoading()) {
-                    showLoading()
-                } else {
-                    hideLoading()
-                }
-            }
-        })
-    }
+//    fun configureViewModel(viewModel: BaseViewModel) {
+//        viewModel.loading.addOnPropertyChangedCallback(object :
+//            Observable.OnPropertyChangedCallback() {
+//            override fun onPropertyChanged(sender: Observable, propertyId: Int) {
+//                if (viewModel.isLoading()) {
+//                    showLoading()
+//                } else {
+//                    hideLoading()
+//                }
+//            }
+//        })
+//    }
 
     fun showLoading() {
 //        val loading = ProgressDialog.getInstance()

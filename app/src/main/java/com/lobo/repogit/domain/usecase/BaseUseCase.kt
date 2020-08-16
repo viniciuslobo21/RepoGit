@@ -1,15 +1,13 @@
 package com.lobo.repogit.domain.usecase
 
-abstract class BaseUseCase<in RV, T> {
-    private var requestValue: RV? = null
+import kotlinx.coroutines.flow.Flow
 
-    fun setRequestValues(requestValues: RV?) {
-        this.requestValue = requestValues
+abstract class BaseUseCase<out Type, in Params> {
+    abstract fun run(params: Params): Flow<Type>
+
+    operator fun invoke(params: Params): Flow<Type> {
+        return run(params)
     }
 
-    suspend fun run(): T {
-        return executeUseCase(requestValue)
-    }
-
-    abstract suspend fun executeUseCase(requestValues: RV? = null): T
+    object None
 }

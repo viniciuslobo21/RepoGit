@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_stars">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ic_star"
+            android:layout_width="@dimen/ic_star_size"
+            android:layout_height="@dimen/ic_star_size"
+            android:layout_marginStart="@dimen/activity_margin_half"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="@dimen/activity_margin_half"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_image_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_image_description"
+            style="@style/textNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/activity_margin_half"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/divider_star"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Star" />
+
+        <View
+            android:id="@+id/divider_star"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/activity_margin_half"
+            android:layout_marginEnd="@dimen/activity_margin_half"
+            android:background="@color/black_alpha_30"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/stars_counter"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/stars_counter"
+            style="@style/textNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_margin_content"
+            android:layout_marginEnd="@dimen/activity_margin_half"
+            android:maxLines="1"
+            app:layout_constraintBottom_toBottomOf="@id/divider_star"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/divider_star"
+            tools:text="35.884" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,13 +1,15 @@
 package com.lobo.repogit.core.di
 
-
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.lobo.repogit.core.RepoGitConstants
-import com.lobo.repogit.core.RepoGitConstants.Companion.API_KEY
 import com.lobo.repogit.core.helpers.Preferences
 import com.lobo.repogit.core.helpers.PreferencesImpl
 import com.lobo.repogit.core.helpers.ResourceHelper
 import com.lobo.repogit.core.helpers.ResourceHelperImpl
+import com.lobo.repogit.data.repository.HomeRepositoryImpl
 import com.lobo.repogit.data.service.HomeService
+import com.lobo.repogit.domain.interactor.GetTopReposUseCase
+import com.lobo.repogit.domain.repository.HomeRepository
 import com.lobo.repogit.presentation.home.HomeViewModel
 import okhttp3.ConnectionSpec
 import okhttp3.Interceptor
@@ -37,18 +39,24 @@ val appModule = module {
 }
 
 val viewModelModule = module {
-//    viewModel {
-//        HomeViewModel()
-//    }
+    viewModel {
+        HomeViewModel(
+            getTopReposUseCase = get()
+        )
+    }
 }
 
 val useCaseModule = module {
-//    single { HomeUpComingUseCase(homeRepository = get()) }
+    single { GetTopReposUseCase(homeRepository = get()) }
 }
 
 val repositoryModule = module {
-//    single<HomeRepository> { HomeRepositoryImpl(service = get()) }
+    single<HomeRepository> { HomeRepositoryImpl(service = get()) }
 }
+
+//val apiModule = module {
+//    single { ApiClientImpl().getAPIService() }
+//}
 
 val apiModule = module {
     single {
@@ -60,8 +68,7 @@ val apiModule = module {
             @Throws(IOException::class)
             override fun intercept(chain: Interceptor.Chain): Response {
                 val original = chain.request()
-                val httpUrl = original.url.newBuilder()
-                    .addQueryParameter(apiKey, API_KEY).build()
+                val httpUrl = original.url.newBuilder().build()
                 val request = original.newBuilder().url(httpUrl).build()
                 return chain.proceed(request)
             }
@@ -89,10 +96,13 @@ val apiModule = module {
         Retrofit.Builder()
             .baseUrl(RepoGitConstants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .client(get<OkHttpClient>())
             .build()
     }
 
     single { get<Retrofit>().create(HomeService::class.java) }
 }
+
+
 

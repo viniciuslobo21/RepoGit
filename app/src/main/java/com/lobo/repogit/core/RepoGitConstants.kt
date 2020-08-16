@@ -2,7 +2,7 @@ package com.lobo.repogit.core
 
 class RepoGitConstants {
     companion object {
-        const val BASE_URL = "https://api.github.com/search/repositories"
+        const val BASE_URL = "https://api.github.com/"
         const val API_KEY = ""
         const val NO_VALUE_BOOLEAN = false
         const val NO_VALUE_DOUBLE = 0.0
