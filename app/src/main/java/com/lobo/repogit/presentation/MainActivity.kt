@@ -2,6 +2,7 @@ package com.lobo.repogit.presentation
 
 
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,9 +30,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     lateinit var progressBar: ProgressBar
 
     private var PAGE_START = 1
-    private var IS_LOADING = false
-
-    private var currentPage = PAGE_START
 
     override fun getContentLayoutId() = R.layout.activity_main
 
@@ -52,14 +50,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         rv.adapter = adapter
 
         rv.addOnScrollListener(object : PaginationScrollListener(linearLayoutManager) {
-//            override fun loadMoreItems() {
-//                IS_LOADING = true
-//                currentPage += 1
-//                loadNextPage(currentPage)
-//            }
-//
-//            override var isLoading = IS_LOADING
-
             override fun onLoadMore(current_page: Int) {
                 loadNextPage(current_page)
             }
@@ -79,14 +69,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     private fun handleTopRepoSuccess(repoInformationPresentation: RepoInformationPresentation) {
-        IS_LOADING = false
-//        binding.listProgress.invisible()
         adapter.addAll(repoInformationPresentation.items)
-//        adapter.addLoadingFooter()
     }
 
     private fun loadNextPage(current_page: Int) {
         binding.listProgress.visible()
+        Toast.makeText(resourceHelper.getContext(), "Loading page $current_page ...", Toast.LENGTH_LONG).show()
         viewModel.getTopRepos(current_page)
     }
 }

@@ -112,8 +112,8 @@ class GitHubReposAdapter(
             ITEM -> {
                 val gitHubVH: GitHubReposViewHolder = holder as GitHubReposViewHolder
 
-                gitHubVH.descriptionStar.text = "Star"
-                gitHubVH.descriptionFork.text = "Fork"
+                gitHubVH.descriptionStar.text = context.getString(R.string.tv_star)
+                gitHubVH.descriptionFork.text = context.getString(R.string.tv_fork)
                 gitHubVH.imageStar.setImageResource(R.drawable.ic_star)
                 gitHubVH.repoMaininfo.text = item.owner.login + " / " + item.name
                 gitHubVH.starsCount.text = item.stargazersCount.toString()
@@ -155,7 +155,6 @@ class GitHubReposAdapter(
                     .into(gitHubVH.imageProfile)
             }
             LOADING -> {
-                val teste = "teste"
             }
 
         }

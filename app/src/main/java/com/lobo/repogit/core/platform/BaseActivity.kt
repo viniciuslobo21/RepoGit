@@ -33,29 +33,6 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
         init()
     }
 
-//    fun configureViewModel(viewModel: BaseViewModel) {
-//        viewModel.loading.addOnPropertyChangedCallback(object :
-//            Observable.OnPropertyChangedCallback() {
-//            override fun onPropertyChanged(sender: Observable, propertyId: Int) {
-//                if (viewModel.isLoading()) {
-//                    showLoading()
-//                } else {
-//                    hideLoading()
-//                }
-//            }
-//        })
-//    }
-
-    fun showLoading() {
-//        val loading = ProgressDialog.getInstance()
-//        FragmentDialogUtils.showDialog(this, loading as ProgressDialog, "SHOW_LOADING")
-    }
-
-    fun hideLoading() {
-//        val loading = ProgressDialog.getInstance()
-//        loading?.dismiss()
-    }
-
     fun handleError(error: Throwable) {
         val message: String = when (error) {
             is HttpException -> getString(R.string.api_general_error)

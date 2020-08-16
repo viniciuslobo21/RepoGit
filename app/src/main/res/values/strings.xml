@@ -7,4 +7,5 @@
     <string name="api_general_error">Unexpected error occurred. Try again later.</string>
     <string name="tv_star">Star</string>
     <string name="tv_top_repositories_of">Top Repositories of</string>
+    <string name="tv_fork">Fork</string>
 </resources>
