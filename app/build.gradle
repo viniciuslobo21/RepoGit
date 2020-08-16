@@ -48,9 +48,13 @@ dependencies {
     implementation diDependencies.values()
     implementation asyncDependencies.values()
 
-    testImplementation testDependencies.junit
-    androidTestImplementation testDependencies.test_junit
-    androidTestImplementation testDependencies.espresso
+    testImplementation testDependencies.values()
+
+//    androidTestImplementation testDependencies.test_junit
+//    androidTestImplementation testDependencies.espresso
+//    androidTestImplementation testDependencies.coreTesting
+
+
 }
 
 check.dependsOn 'checkstyle'

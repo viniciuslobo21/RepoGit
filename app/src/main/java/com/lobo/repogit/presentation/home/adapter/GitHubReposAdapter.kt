@@ -115,7 +115,7 @@ class GitHubReposAdapter(
                 gitHubVH.descriptionStar.text = "Star"
                 gitHubVH.descriptionFork.text = "Fork"
                 gitHubVH.imageStar.setImageResource(R.drawable.ic_star)
-                gitHubVH.repoMaininfo.text = item.owner.login + "/" + item.name
+                gitHubVH.repoMaininfo.text = item.owner.login + " / " + item.name
                 gitHubVH.starsCount.text = item.stargazersCount.toString()
                 gitHubVH.imageFork.setImageResource(R.drawable.fork)
                 gitHubVH.forkCount.text = item.forksCount.toString()

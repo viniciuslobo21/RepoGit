@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.lobo.repogit.R
 import com.lobo.repogit.core.extension.gone
+import com.lobo.repogit.core.extension.invisible
+import com.lobo.repogit.core.extension.visible
 import com.lobo.repogit.core.platform.BaseActivity
 import com.lobo.repogit.core.platform.PaginationScrollListener
 import com.lobo.repogit.core.platform.fold
@@ -41,7 +43,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private fun setupAdapter() {
         rv = binding.rvRepoList
-        progressBar = binding.mainProgress
+        progressBar = binding.listProgress
 
         adapter = GitHubReposAdapter(resourceHelper.getContext())
         linearLayoutManager = LinearLayoutManager(this)
@@ -78,14 +80,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private fun handleTopRepoSuccess(repoInformationPresentation: RepoInformationPresentation) {
         IS_LOADING = false
-        binding.mainProgress.gone()
+//        binding.listProgress.invisible()
         adapter.addAll(repoInformationPresentation.items)
 //        adapter.addLoadingFooter()
     }
 
-
     private fun loadNextPage(current_page: Int) {
-        IS_LOADING = false
+        binding.listProgress.visible()
         viewModel.getTopRepos(current_page)
     }
 }

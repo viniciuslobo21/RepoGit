@@ -15,10 +15,5 @@ class HomeRepositoryImpl(private val service: HomeService) : HomeRepository {
             TopRepoResponseMapper.transformFrom(it)
         }
 
-//        return flow {
-//            service.getTopRepo(pageIndex).safeAwait().map {
-//                TopRepoResponseMapper.transformFrom(it)
-//            }
-//        }
     }
 }
