@@ -3,97 +3,153 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="repo"
+            type="com.lobo.repogit.presentation.model.ItemPresentation" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_main_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="@drawable/background_stars"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginStart="@dimen/activity_margin_half"
+        android:layout_marginTop="@dimen/activity_margin_half"
+        android:layout_marginEnd="@dimen/activity_margin_half"
+        android:animateLayoutChanges="true"
+        android:background="@drawable/background_stars">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/container_profile_image"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:padding="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <ProgressBar
+            android:id="@+id/profile_image_progress"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="@dimen/default_margin"
+            android:layout_height="@dimen/default_margin"
+            android:layout_gravity="center"
+            android:theme="@style/CircularProgress"
+            app:layout_constraintBottom_toBottomOf="@id/profile_image_poster"
+            app:layout_constraintEnd_toEndOf="@id/profile_image_poster"
+            app:layout_constraintStart_toStartOf="@id/profile_image_poster"
+            app:layout_constraintTop_toTopOf="@id/profile_image_poster" />
 
-            <ProgressBar
-                android:id="@+id/profile_image_progress"
-                style="@style/Widget.AppCompat.ProgressBar"
-                android:layout_width="@dimen/activity_margin"
-                android:layout_height="@dimen/activity_margin"
-                android:layout_gravity="center"
-                android:theme="@style/CircularProgress"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/profile_image_poster"
-                android:layout_width="@dimen/poster_thumb_width"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <View
-            app:layout_constraintTop_toTopOf="parent"
-            android:id="@+id/divider"
-            android:layout_width="1dp"
-            android:layout_height="70dp"
-            android:background="@color/black_alpha_30"
-            app:layout_constraintStart_toEndOf="@id/container_profile_image"
-             />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/activity_margin_half"
-            android:layout_marginStart="@dimen/activity_margin_half"
-            android:background="@android:color/white"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image_poster"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="@dimen/default_margin"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--        <View-->
+        <!--            android:id="@+id/divider"-->
+        <!--            android:layout_width="1dp"-->
+        <!--            android:layout_height="70dp"-->
+        <!--            android:background="@color/black_alpha_30"-->
+        <!--            android:visibility="gone"-->
+        <!--            app:layout_constraintStart_toEndOf="@id/profile_image_poster"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+        <TextView
+            android:id="@+id/repo_main_info"
+            style="@style/textBold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/activity_margin_half"
+            android:layout_marginEnd="@dimen/little_margin"
+            android:text='@{repo.owner.login + "/" + repo.name}'
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/divider"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintStart_toEndOf="@id/profile_image_poster"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="viniciuslobo21 / repogit" />
 
-            <include
-                android:id="@+id/container_star"
-                layout="@layout/container_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_margin_half"
-                app:layout_constraintEnd_toStartOf="@id/container_fork"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/repo_main_info" />
+        <TextView
+            android:id="@+id/tv_description"
+            style="@style/textNormal"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/activity_margin_half"
+            android:layout_marginEnd="@dimen/little_margin"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text='@{repo.description}'
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/profile_image_poster"
+            app:layout_constraintTop_toBottomOf="@+id/repo_main_info"
+            tools:text="A collection of samples to discuss and showcase different architectural tools and patterns for Android apps." />
 
-            <include
-                android:id="@+id/container_fork"
-                layout="@layout/container_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/activity_margin_half"
-                app:layout_constraintBottom_toBottomOf="@id/container_star"
-                app:layout_constraintStart_toEndOf="@id/container_star"
-                app:layout_constraintTop_toTopOf="@id/container_star" />
 
-            <TextView
-                android:id="@+id/repo_main_info"
-                style="@style/TextAppearance.AppCompat.Subhead"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="viniciuslobo21 / repogit" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ic_star"
+            android:layout_width="@dimen/ic_star_size"
+            android:layout_height="@dimen/ic_star_size"
+            android:layout_margin="@dimen/default_margin"
+            android:src="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/profile_image_poster"
+            app:layout_constraintTop_toBottomOf="@+id/tv_description" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_stars_count"
+            style="@style/textNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_margin_half"
+            android:layout_marginTop="@dimen/default_margin"
+            android:text='@{`` + repo.stargazersCount}'
+            app:layout_constraintStart_toEndOf="@+id/ic_star"
+            app:layout_constraintTop_toBottomOf="@+id/tv_description"
+            tools:text="12.345" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ic_fork"
+            android:layout_width="@dimen/ic_star_size"
+            android:layout_height="@dimen/ic_star_size"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/fork"
+            app:layout_constraintStart_toEndOf="@+id/tv_stars_count"
+            app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+
+        <TextView
+            android:id="@+id/tv_fork_count"
+            style="@style/textNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_margin_half"
+            android:layout_marginTop="@dimen/default_margin"
+            android:text='@{`` + repo.forksCount}'
+            app:layout_constraintStart_toEndOf="@+id/ic_fork"
+            app:layout_constraintTop_toBottomOf="@+id/tv_description"
+            tools:text="12.345" />
+
+
+        <!--        <include-->
+        <!--            android:id="@+id/container_star"-->
+        <!--            layout="@layout/container_layout"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="@dimen/activity_margin_half"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toStartOf="@id/container_fork"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/repo_main_info" />-->
+
+        <!--        <include-->
+        <!--            android:id="@+id/container_fork"-->
+        <!--            layout="@layout/container_layout"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="@dimen/activity_margin_half"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@id/container_star"-->
+        <!--            app:layout_constraintStart_toEndOf="@id/container_star"-->
+        <!--            app:layout_constraintTop_toTopOf="@id/container_star" />-->
+        <!--        -->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

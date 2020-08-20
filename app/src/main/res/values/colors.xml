@@ -11,6 +11,7 @@
     <color name="black_alpha_20">#33000000</color>
     <color name="black_alpha_30">#4D000000</color>
     <color name="black_alpha_40">#66000000</color>
+    <color name="gray">#666</color>
 
     <!--    Hexadecimal Alpha-->
     <!--    100% — FF-->

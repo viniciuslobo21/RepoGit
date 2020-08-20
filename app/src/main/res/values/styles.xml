@@ -14,9 +14,15 @@
     </style>
 
 
+    <style name="textBold" parent="Theme.AppCompat.Light">
+        <item name="fontFamily">sans-serif-black</item>
+        <item name="android:textSize">@dimen/font_default</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="textNormal" parent="Theme.AppCompat.Light">
         <item name="fontFamily">sans-serif</item>
-        <item name="android:textSize">@dimen/font_small</item>
+        <item name="android:textSize">@dimen/font_default</item>
         <item name="android:textColor">@color/black</item>
     </style>
 

@@ -7,5 +7,6 @@ data class ItemPresentation(
     val forksCount: Int = RepoGitConstants.NO_VALUE_INT,
     val stargazersCount: Int = RepoGitConstants.NO_VALUE_INT,
     val name: String = RepoGitConstants.NO_VALUE_STRING,
-    val owner: OwnerPresentation = OwnerPresentation()
+    val owner: OwnerPresentation = OwnerPresentation(),
+    val description: String?  = RepoGitConstants.NO_VALUE_STRING
 )

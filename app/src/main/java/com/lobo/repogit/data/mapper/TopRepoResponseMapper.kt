@@ -1,5 +1,6 @@
 package com.lobo.repogit.data.mapper
 
+import com.lobo.repogit.core.RepoGitConstants
 import com.lobo.repogit.core.platform.BaseMapper
 import com.lobo.repogit.data.model.ItemResponse
 import com.lobo.repogit.data.model.OwnerResponse
@@ -25,7 +26,8 @@ object TopRepoResponseMapper : BaseMapper<RepoInformationDomain, RepoInformation
                     it.forksCount,
                     it.stargazersCount,
                     it.name,
-                    getOwnerDomain(it.owner)
+                    getOwnerDomain(it.owner),
+                    it.description ?: RepoGitConstants.NO_VALUE_STRING
                 )
             )
         }

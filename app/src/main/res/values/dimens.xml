@@ -1,6 +1,18 @@
 
 <resources>
-    <dimen name="activity_margin">16dp</dimen>
+
+    <!--    MARGIN-->
+    <dimen name="match_constraint">0dp</dimen>
+    <dimen name="little_margin">8dp</dimen>
+    <dimen name="default_margin">16dp</dimen>
+    <dimen name="medium_margin">24dp</dimen>
+    <dimen name="big_margin">32dp</dimen>
+
+    <!--    FONT SIZE-->
+    <dimen name="font_small">12sp</dimen>
+    <dimen name="font_default">16sp</dimen>
+    <dimen name="font_medium">20sp</dimen>
+    <dimen name="font_title">24sp</dimen>
 
     <dimen name="paddingItemDecorationDefault">8dp</dimen>
     <dimen name="paddingItemDecorationEdge">24dp</dimen>
@@ -10,11 +22,5 @@
     <dimen name="poster_thumb_height">96dp</dimen>
     <dimen name="activity_margin_quarter">4dp</dimen>
     <dimen name="ic_star_size">20dp</dimen>
-
-    <!--    FONT SIZE-->
-    <dimen name="font_small">12sp</dimen>
-    <dimen name="font_default">16sp</dimen>
-    <dimen name="font_medium">20sp</dimen>
-    <dimen name="font_title">24sp</dimen>
 
 </resources>

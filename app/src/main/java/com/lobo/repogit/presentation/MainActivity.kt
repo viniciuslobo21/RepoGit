@@ -1,16 +1,11 @@
 package com.lobo.repogit.presentation
 
-
-import android.widget.ProgressBar
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.lobo.repogit.R
 import com.lobo.repogit.core.extension.gone
-import com.lobo.repogit.core.extension.invisible
-import com.lobo.repogit.core.extension.visible
 import com.lobo.repogit.core.platform.BaseActivity
 import com.lobo.repogit.core.platform.PaginationScrollListener
 import com.lobo.repogit.core.platform.fold
@@ -27,7 +22,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     lateinit var adapter: GitHubReposAdapter
     lateinit var linearLayoutManager: LinearLayoutManager
     lateinit var rv: RecyclerView
-    lateinit var progressBar: ProgressBar
 
     private var PAGE_START = 1
 
@@ -41,7 +35,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private fun setupAdapter() {
         rv = binding.rvRepoList
-        progressBar = binding.listProgress
 
         adapter = GitHubReposAdapter(resourceHelper.getContext())
         linearLayoutManager = LinearLayoutManager(this)
@@ -51,6 +44,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         rv.addOnScrollListener(object : PaginationScrollListener(linearLayoutManager) {
             override fun onLoadMore(current_page: Int) {
+                adapter.isLoading = true
                 loadNextPage(current_page)
             }
         })
@@ -62,19 +56,31 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private fun subscribeToLiveData() {
         viewModel.topRepoLiveData.observe(this, Observer {
-            it.fold(this::handleError) { list ->
+            binding.mainProgress.gone()
+            it.fold(this::onError) { list ->
                 handleTopRepoSuccess(list)
             }
         })
     }
 
+    private fun onError(error: Throwable) {
+        adapter.isLoading = false
+        handleError(error)
+    }
+
     private fun handleTopRepoSuccess(repoInformationPresentation: RepoInformationPresentation) {
-        adapter.addAll(repoInformationPresentation.items)
+        adapter.isLoading = false
+        if (repoInformationPresentation.items.isNotEmpty()) {
+            adapter.isFullyLoaded = false
+            adapter.updateList(repoInformationPresentation.items)
+        } else {
+            adapter.isFullyLoaded = true
+            adapter.notifyDataSetChanged()
+        }
     }
 
     private fun loadNextPage(current_page: Int) {
-        binding.listProgress.visible()
-        Toast.makeText(resourceHelper.getContext(), "Loading page $current_page ...", Toast.LENGTH_LONG).show()
+//        Toast.makeText(resourceHelper.getContext(), "Loading page $current_page ...", Toast.LENGTH_LONG).show()
         viewModel.getTopRepos(current_page)
     }
 }

@@ -8,4 +8,5 @@
     <string name="tv_star">Star</string>
     <string name="tv_top_repositories_of">Top Repositories of</string>
     <string name="tv_fork">Fork</string>
+    <string name="repos_loaded">Respositories loaded</string>
 </resources>

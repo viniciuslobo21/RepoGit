@@ -1,5 +1,6 @@
 package com.lobo.repogit.domain.mapper
 
+import com.lobo.repogit.core.RepoGitConstants
 import com.lobo.repogit.core.platform.BaseMapper
 import com.lobo.repogit.domain.model.ItemDomain
 import com.lobo.repogit.domain.model.OwnerDomain
@@ -26,7 +27,8 @@ object TopRepoDomainMapper : BaseMapper<RepoInformationPresentation, RepoInforma
                     it.forksCount,
                     it.stargazersCount,
                     it.name,
-                    getOwnerPresentation(it.owner)
+                    getOwnerPresentation(it.owner),
+                    it.description ?: RepoGitConstants.NO_VALUE_STRING
                 )
             )
         }
